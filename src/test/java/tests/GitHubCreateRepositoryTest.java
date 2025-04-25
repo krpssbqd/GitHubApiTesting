@@ -79,5 +79,6 @@ public class GitHubCreateRepositoryTest extends GitHubBaseTest {
     @Step("🧹Cleanup")
     public void cleanUpResources() {
         deleteRepoIfExists(DEFAULT_USER, "GitHubTesting1", gitHubCaller.getGitHubUser());
+        deleteRepoIfExists(DEFAULT_USER, "GitHubTesting6", gitHubCaller.getGitHubUser());
     }
 }
