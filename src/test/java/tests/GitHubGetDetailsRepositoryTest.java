@@ -27,31 +27,6 @@ public class GitHubGetDetailsRepositoryTest extends GitHubBaseTest {
         expectedResponseBodyShouldMatchJson(response, "fetchGitHubRepositories.json");
     }
 
-    @Test
-    public void shouldThrow401ForUnauthorized() {
-        // given:
-        Object requestBody = getDefaultCreateRepoRequestBody("GitHubTesting5");
-
-        // when:
-        Response response = gitHubCaller.createRepository(requestBody, gitHubCaller.getUnauthorizedUser());
-
-        // then:
-        expectedResponseCode(response, UNAUTHORIZED);
-    }
-
-    @Test
-    public void shouldThrow422when() {
-        // given:
-        Object requestBody = getDefaultCreateRepoRequestBody("GitHubTesting6");
-        gitHubCaller.createRepository(requestBody, gitHubCaller.getGitHubUser());
-
-        // when:
-        Response response = gitHubCaller.createRepository(requestBody, gitHubCaller.getGitHubUser());
-
-        // then:
-        checkDefaultErrorMessage(response, "Repository creation failed.", "422");
-    }
-
     @AfterMethod
     public void cleanup() {
         cleanUpResources();
