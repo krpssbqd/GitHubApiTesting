@@ -58,6 +58,19 @@ public class GitHubCreateRepositoryTest extends GitHubBaseTest {
         expectedResponseBody(response, key, requestBodyExtension.get(key).toString());
     }
 
+    @Test
+    public void shouldThrow422when() {
+        // given:
+        Object requestBody = getDefaultCreateRepoRequestBody("GitHubTesting6");
+        gitHubCaller.createRepository(requestBody, gitHubCaller.getGitHubUser());
+
+        // when:
+        Response response = gitHubCaller.createRepository(requestBody, gitHubCaller.getGitHubUser());
+
+        // then:
+        checkDefaultErrorMessage(response, "Repository creation failed.", "422");
+    }
+    
     @AfterMethod
     public void cleanup() {
         cleanUpResources();
